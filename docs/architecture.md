@@ -1,12 +1,12 @@
-# CodeLens — Architecture Deep Dive
+# Nexvara — Architecture Deep Dive
 
-> This document covers the internal design decisions and data flow of the CodeLens system.
+> This document covers the internal design decisions and data flow of the Nexvara system.
 
 ---
 
 ## System Overview
 
-CodeLens is a full-stack developer intelligence platform split into two services:
+Nexvara is a full-stack developer intelligence platform split into two services:
 
 | Service | Port | Technology |
 |---|---|---|

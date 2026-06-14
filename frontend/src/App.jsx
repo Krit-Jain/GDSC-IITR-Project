@@ -20,7 +20,7 @@ export default function App() {
   return (
     <div className="app-root">
       <p className="coming-soon">
-        🔍 CodeLens — Initialising…
+        ✦ Nexvara — Initialising…
       </p>
     </div>
   )

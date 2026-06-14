@@ -1,6 +1,6 @@
-# Contributing to CodeLens
+# Contributing to Nexvara
 
-Thank you for your interest in contributing to **CodeLens**! 🎉
+Thank you for your interest in contributing to **Nexvara**! 🎉
 
 ---
 

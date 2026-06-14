@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔍 CodeLens
+# ✦ Nexvara
 
 ### AI-Powered Repository Structure Analysis & Visualisation
 
@@ -16,13 +16,13 @@
 ---
 
 > **Jumping into a massive, unfamiliar codebase can be overwhelming.**
-> CodeLens parses your local Git repositories and builds a **living, interactive knowledge graph** —
+> Nexvara parses your local Git repositories and builds a **living, interactive knowledge graph** —
 > revealing hidden dependencies, flagging high-risk files, and letting AI explain any file instantly.
 
 ---
 
 <!-- DEMO GIF PLACEHOLDER — added in Phase 5 -->
-<!-- ![CodeLens Demo](./docs/demo.gif) -->
+<!-- ![Nexvara Demo](./docs/demo.gif) -->
 
 </div>
 
@@ -74,7 +74,7 @@ flowchart TD
 ## 🗂️ Project Structure
 
 ```
-codelens/
+nexvara/
 │
 ├── README.md                   # You are here
 ├── LICENSE                     # MIT
@@ -133,8 +133,8 @@ codelens/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/codelens.git
-cd codelens
+git clone https://github.com/Krit-Jain/GDSC-IITR-Project.git
+cd GDSC-IITR-Project
 ```
 
 ### 2. Start the Backend
@@ -198,7 +198,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on code style, commit co
 
 ## 📄 License
 
-MIT © 2025 GDSC IITR — CodeLens Team
+MIT © 2025 GDSC IITR — Nexvara Team
 
 ---
 

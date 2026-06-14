@@ -1,5 +1,5 @@
 """
-CodeLens — FastAPI Application Entry Point
+Nexvara — FastAPI Application Entry Point
 ==========================================
 Main app bootstrap: registers routers, configures CORS, and mounts
 the root health-check endpoint.
@@ -11,9 +11,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from routers import analyze, ai
 
 app = FastAPI(
-    title="CodeLens API",
+    title="Nexvara API",
     description=(
-        "Backend intelligence engine for CodeLens — a repository structure "
+        "Backend intelligence engine for Nexvara — a repository structure "
         "analysis and visualisation system. Parses local directories via AST, "
         "computes complexity metrics, detects dependency cycles, calculates "
         "blast radius, and streams AI-powered file insights."
@@ -40,4 +40,4 @@ app.include_router(ai.router, prefix="/api/ai", tags=["AI"])
 @app.get("/", tags=["Health"])
 async def root():
     """Health check endpoint."""
-    return {"status": "ok", "service": "CodeLens API", "version": "1.0.0"}
+    return {"status": "ok", "service": "Nexvara API", "version": "1.0.0"}
