@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Play, Hexagon, LayoutTemplate, Network, Target } from 'lucide-react'
 import { useGraphStore } from '../store/graphStore'
+import SearchBar from './SearchBar'
 
 export default function Toolbar() {
   const [inputPath, setInputPath] = useState('')
@@ -91,6 +92,8 @@ export default function Toolbar() {
         <LayoutBtn icon={<Network size={16} />} mode="force" current={layoutMode} set={setLayoutMode} />
         <LayoutBtn icon={<Target size={16} />} mode="radial" current={layoutMode} set={setLayoutMode} />
       </div>
+
+      <SearchBar />
 
     </div>
   )

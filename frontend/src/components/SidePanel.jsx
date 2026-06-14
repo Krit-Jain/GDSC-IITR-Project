@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
-import { X, Sparkles, FileText, Zap, Box, ZapIcon } from 'lucide-react'
+import { X, Sparkles, FileText, Zap, Box, ZapIcon, ScanText } from 'lucide-react'
 import { useGraphStore } from '../store/graphStore'
 
 export default function SidePanel() {
   const selectedNodeId = useGraphStore(state => state.selectedNode)
   const setSelectedNode = useGraphStore(state => state.setSelectedNode)
+  const blastRadiusMode = useGraphStore(state => state.blastRadiusMode)
+  const setBlastRadiusMode = useGraphStore(state => state.setBlastRadiusMode)
   const nodes = useGraphStore(state => state.nodes)
   const repoPath = useGraphStore(state => state.repoPath)
   
@@ -149,12 +151,29 @@ export default function SidePanel() {
           <Sparkles size={14} color={isStreaming ? 'var(--color-brand-primary)' : 'var(--color-text-muted)'} />
           <span>Gemini 1.5 Flash</span>
         </div>
-        {isCached && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--color-brand-primary)' }}>
-            <ZapIcon size={12} />
-            <span>Cached</span>
-          </div>
-        )}
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <button
+            onClick={() => setBlastRadiusMode(!blastRadiusMode)}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '4px',
+              background: blastRadiusMode ? 'rgba(255, 0, 60, 0.1)' : 'transparent',
+              color: blastRadiusMode ? 'var(--color-brand-accent)' : 'var(--color-text-secondary)',
+              border: blastRadiusMode ? '1px solid var(--color-brand-accent)' : '1px solid var(--color-border-default)',
+              padding: '4px 8px', borderRadius: '4px', cursor: 'pointer', transition: 'all 0.2s'
+            }}
+          >
+            <ScanText size={12} />
+            Blast Radius
+          </button>
+
+          {isCached && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--color-brand-primary)' }}>
+              <ZapIcon size={12} />
+              <span>Cached</span>
+            </div>
+          )}
+        </div>
       </div>
 
     </div>

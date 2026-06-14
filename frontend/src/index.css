@@ -136,6 +136,12 @@ body::before {
   border: 1px solid rgba(255,255,255,0.05);
 }
 
+.nexvara-node.dimmed {
+  opacity: 0.15;
+  filter: grayscale(100%);
+  pointer-events: none;
+}
+
 /* ── React Flow Overrides ── */
 .react-flow__pane {
   background: radial-gradient(circle at 50% 50%, #0a0a0f 0%, #000000 100%);
@@ -151,6 +157,10 @@ body::before {
   stroke: var(--color-brand-accent);
   stroke-dasharray: 5;
   animation: dashdraw 0.5s linear infinite;
+}
+
+.react-flow__edge.dimmed {
+  opacity: 0.1;
 }
 
 @keyframes dashdraw {
