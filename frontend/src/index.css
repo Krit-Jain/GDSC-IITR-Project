@@ -1,0 +1,144 @@
+/* ============================================================
+   CodeLens — Global Design System
+   index.css
+   ============================================================
+
+   Table of Contents
+   -----------------
+   1. CSS Custom Properties (Design Tokens)
+   2. Reset & Base
+   3. Typography
+   4. Layout Primitives
+   5. Component Tokens (used by components)
+   6. Utility Classes
+   7. Animations & Keyframes
+
+   Implemented fully in Phase 2.
+   ============================================================ */
+
+/* ── 1. Design Tokens ─────────────────────────────────────── */
+:root {
+  /* Brand */
+  --color-brand-primary:    #6366f1;  /* Indigo */
+  --color-brand-secondary:  #8b5cf6;  /* Violet */
+  --color-brand-accent:     #06b6d4;  /* Cyan */
+
+  /* Backgrounds */
+  --color-bg-base:          #0a0a0f;
+  --color-bg-surface:       #111118;
+  --color-bg-elevated:      #1a1a27;
+  --color-bg-overlay:       #22223a;
+
+  /* Borders */
+  --color-border-subtle:    rgba(255, 255, 255, 0.06);
+  --color-border-default:   rgba(255, 255, 255, 0.12);
+  --color-border-strong:    rgba(255, 255, 255, 0.24);
+
+  /* Text */
+  --color-text-primary:     #f0f0ff;
+  --color-text-secondary:   #a0a0c0;
+  --color-text-muted:       #60607a;
+
+  /* Complexity Heatmap */
+  --color-complexity-low:    #22c55e;  /* Green */
+  --color-complexity-medium: #f59e0b;  /* Amber */
+  --color-complexity-high:   #ef4444;  /* Red */
+
+  /* Node types */
+  --color-node-python:      #3b82f6;
+  --color-node-js:          #eab308;
+  --color-node-ts:          #6366f1;
+  --color-node-css:         #ec4899;
+  --color-node-other:       #6b7280;
+
+  /* Spacing Scale */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+
+  /* Typography */
+  --font-sans:  'Inter', system-ui, sans-serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+  --font-size-xs:   11px;
+  --font-size-sm:   13px;
+  --font-size-base: 14px;
+  --font-size-md:   16px;
+  --font-size-lg:   20px;
+  --font-size-xl:   24px;
+  --font-size-2xl:  32px;
+
+  /* Radius */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-glow-brand:    0 0 20px rgba(99, 102, 241, 0.35);
+  --shadow-glow-cyan:     0 0 20px rgba(6, 182, 212, 0.3);
+  --shadow-card:          0 4px 24px rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+}
+
+/* ── 2. Reset & Base ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── 3. Temporary Init Screen ─────────────────────────────── */
+.app-root {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 50%, #1a1a2e 0%, #0a0a0f 70%);
+}
+
+.coming-soon {
+  font-size: var(--font-size-xl);
+  color: var(--color-brand-primary);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* ── 7. Animations ────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(99, 102, 241, 0.4); }
+  50%       { box-shadow: 0 0 24px rgba(99, 102, 241, 0.8); }
+}
+
+@keyframes blast-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
+  50%       { box-shadow: 0 0 28px rgba(239, 68, 68, 0.9); }
+}
