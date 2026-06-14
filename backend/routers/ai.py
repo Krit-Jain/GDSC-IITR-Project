@@ -9,4 +9,24 @@ Endpoints
 ---------
 GET /api/ai/explain?path=<file_path>&mode=<summary|functions|rationale>
 """
-# TODO (Phase 3): Implement AI streaming endpoint
+
+from fastapi import APIRouter, Query
+from sse_starlette.sse import EventSourceResponse
+
+from services.ai_service import stream_file_insight
+
+router = APIRouter()
+
+@router.get("/explain")
+async def explain_file(
+    path: str = Query(..., description="Absolute path to the file to explain"),
+    mode: str = Query("summary", description="Insight mode: summary, functions, or rationale")
+):
+    """
+    Streams an AI-generated explanation of the specified file using SSE.
+    """
+    valid_modes = {"summary", "functions", "rationale"}
+    if mode not in valid_modes:
+        mode = "summary"
+        
+    return EventSourceResponse(stream_file_insight(path, mode))

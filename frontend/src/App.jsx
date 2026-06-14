@@ -1,5 +1,6 @@
 import Toolbar from './components/Toolbar'
 import GraphCanvas from './components/GraphCanvas'
+import SidePanel from './components/SidePanel'
 
 export default function App() {
   return (
@@ -14,9 +15,9 @@ export default function App() {
       </div>
 
       {/* 
-        SidePanel will be implemented in Phase 3.
-        It will sit on top of the canvas, anchored to the right side.
+        SidePanel sits on top of the canvas, anchored to the right side.
       */}
+      <SidePanel />
     </div>
   )
 }
