@@ -1,20 +1,24 @@
-/**
- * useGraphLayout.js — Custom React Hook
- * =======================================
- * Applies automated graph layout using ELKjs (Eclipse Layout Kernel).
- *
- * Layout modes:
- * - 'hierarchical' : Top-down layered layout — mirrors directory tree
- * - 'force'        : D3-style force-directed — reveals dependency clusters
- * - 'radial'       : Radial layout centred on selected node
- *
- * Usage:
- *   const { layoutedNodes, layoutedEdges } = useGraphLayout(nodes, edges, mode)
- *
- * Implemented in Phase 2.
- */
+import { useEffect } from 'react'
+import { getLayoutedElements } from '../utils/layoutUtils'
+import { useGraphStore } from '../store/graphStore'
 
-// TODO (Phase 2): Implement ELKjs layout hook
-export function useGraphLayout(nodes, edges, mode) {
-  return { layoutedNodes: nodes, layoutedEdges: edges }
+export function useGraphLayout() {
+  const nodes = useGraphStore(state => state.nodes)
+  const edges = useGraphStore(state => state.edges)
+  const layoutMode = useGraphStore(state => state.layoutMode)
+  const setNodes = useGraphStore(state => state.setNodes)
+  const setEdges = useGraphStore(state => state.setEdges)
+
+  useEffect(() => {
+    // Only run layout if nodes exist and haven't been laid out yet 
+    // (position x and y both exactly 0 is our initial state)
+    const needsLayout = nodes.length > 0 && nodes.some(n => n.position.x === 0 && n.position.y === 0)
+    
+    if (needsLayout) {
+      getLayoutedElements(nodes, edges, layoutMode).then(({ nodes: layoutedNodes, edges: layoutedEdges }) => {
+        setNodes(layoutedNodes)
+        setEdges(layoutedEdges)
+      })
+    }
+  }, [nodes, edges, layoutMode, setNodes, setEdges])
 }

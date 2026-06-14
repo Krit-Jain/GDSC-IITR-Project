@@ -1,19 +1,54 @@
-/**
- * Zustand Graph Store
- * ===================
- * Central state management for the CodeLens graph canvas.
- *
- * State Shape:
- * - nodes          : React Flow node array (with custom data)
- * - edges          : React Flow edge array
- * - selectedNode   : Currently selected file node (for AI side panel)
- * - layoutMode     : 'hierarchical' | 'force' | 'radial'
- * - blastRadiusMode: boolean — highlight blast radius of selectedNode
- * - searchQuery    : string — active search/filter term
- * - isLoading      : boolean — analysis in progress
- * - repoPath       : string — currently analysed directory path
- *
- * Implemented in Phase 2.
- */
+import { create } from 'zustand'
+import { applyNodeChanges, applyEdgeChanges } from '@xyflow/react'
 
-// TODO (Phase 2): Implement Zustand store
+export const useGraphStore = create((set, get) => ({
+  nodes: [],
+  edges: [],
+  selectedNode: null,
+  layoutMode: 'hierarchical',
+  blastRadiusMode: false,
+  searchQuery: '',
+  isLoading: false,
+  repoPath: '',
+  metrics: null,
+
+  setNodes: (nodes) => set({ nodes }),
+  setEdges: (edges) => set({ edges }),
+  
+  onNodesChange: (changes) => set({
+    nodes: applyNodeChanges(changes, get().nodes),
+  }),
+  
+  onEdgesChange: (changes) => set({
+    edges: applyEdgeChanges(changes, get().edges),
+  }),
+
+  setSelectedNode: (nodeId) => set({ selectedNode: nodeId }),
+  setLayoutMode: (mode) => set({ layoutMode: mode }),
+  setBlastRadiusMode: (active) => set({ blastRadiusMode: active }),
+  setSearchQuery: (query) => set({ searchQuery: query }),
+  setIsLoading: (loading) => set({ isLoading: loading }),
+  setRepoPath: (path) => set({ repoPath: path }),
+  setMetrics: (metrics) => set({ metrics }),
+
+  // Action to fetch from backend
+  analyzeRepo: async (path) => {
+    set({ isLoading: true, repoPath: path, error: null })
+    try {
+      const res = await fetch(`http://localhost:8000/api/analyze?path=${encodeURIComponent(path)}`)
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.detail || 'Analysis failed')
+      }
+      const data = await res.json()
+      set({ 
+        nodes: data.nodes, 
+        edges: data.edges,
+        metrics: data.metrics,
+        isLoading: false 
+      })
+    } catch (err) {
+      set({ isLoading: false, error: err.message, nodes: [], edges: [], metrics: null })
+    }
+  }
+}))

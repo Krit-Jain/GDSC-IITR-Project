@@ -1,27 +1,22 @@
-/**
- * App.jsx — Root application component
- *
- * Layout:
- * ┌───────────────────────────────────────────────┐
- * │  Toolbar (top bar — path input, layout modes) │
- * ├───────────────────────────┬───────────────────┤
- * │                           │                   │
- * │   GraphCanvas             │   SidePanel       │
- * │   (React Flow)            │   (AI insights)   │
- * │                           │                   │
- * └───────────────────────────┴───────────────────┘
- *
- * Implemented fully in Phase 2.
- */
-
-// TODO (Phase 2): Implement full App layout
+import Toolbar from './components/Toolbar'
+import GraphCanvas from './components/GraphCanvas'
 
 export default function App() {
   return (
-    <div className="app-root">
-      <p className="coming-soon">
-        ✦ Nexvara — Initialising…
-      </p>
+    <div className="app-root" style={{ position: 'relative', width: '100vw', height: '100vh' }}>
+      <Toolbar />
+      
+      {/* 
+        The React Flow canvas takes up the full screen behind the transparent UI.
+      */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
+        <GraphCanvas />
+      </div>
+
+      {/* 
+        SidePanel will be implemented in Phase 3.
+        It will sit on top of the canvas, anchored to the right side.
+      */}
     </div>
   )
 }
